@@ -1,3 +1,97 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#g_navi ul {
+ overflow: hidden;
+ margin: 0 auto;
+ padding: 0 3%;
+ width: 94%;
+ max-width: 960px;
+}
+
+ #g_navi ul li {
+  position: relative;
+  float: left;
+  width: 20%;
+ }
+
+  #g_navi ul li .nav-item {
+   display: block;
+   padding: 17px 5%;
+   width: 90%;
+   color: #fff;
+   text-align: center;
+   text-decoration: none;
+  }
+
+.like-btn {
+    color: #8899a6;
+  }
+
+.container {
+  //width: 1000px;
+  //width: 95%;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.main {
+  display: block;
+  //width: 660px;
+  //width: 70%;
+  margin-right: 20px;
+}
+
+.side {
+  //width: 320px;
+  //width: 20%;
+}
+
+.rank{
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  color: #232323;
+  background: white;
+  border-left: solid 10px #FECA30;
+}
+
+.rank:hover{
+  opacity: .7;
+}
+
+.rank-box {
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  //hight: 30px;
+}
+.rank-box .rank-box-title {
+  position: absolute;
+  display: inline-block;
+  top: -7px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: 15px;
+  //color: #1F2125;
+  color: #5d627b;
+  //hight: 30px;
+  //color: green;
+
+}
+
+//.sidebar__item {
+  //margin-bottom: 20px;
+//}
+
+//.side__item--fixed {
+  //position: sticky;
+  //margin-bottom: 0;
+  //top: 10px;
+  //z-index: 1;
+//}
+
+//.not-under:hover {
+  //color: red;
+//}

@@ -1,24 +1,101 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @user.nickname %>
-</p>
+<h2><%= @user.nickname %>さんのページ</h2>
 
-<p>
-  <strong>Profile:</strong>
-  <%= @user.profile %>
-</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+          <table class="table table-striped table-bordered">
+          <tr>
+            <td colspan="2">Nickname: </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= @user.nickname %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">Profile: </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= @user.profile %>
+            </td>
+          </tr>
+          </table>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Post:</strong>
-  <%= @user.post_id %>
-</p>
+  <%= link_to "プロフィールを編集する", edit_user_registration_path, method: :get %>
+  <%#= link_to "プロフィールを編集する", edit_user_detail_path(current_user.user_detail.id),method: :get %>
+  <%#= link_to "プロフィールを設定する", new_user_detail_path,method: :get %>
 
-<p>
-  <strong>Like:</strong>
-  <%= @user.like_id %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <!-- 本人の投稿一覧 -->
+    <div>
+      <h5><%= @user.nickname %>さんの投稿一覧</h5>
+      <% unless @posts.present? %>
+        <p><%= @user.nickname %>さんの投稿はまだありません。</p>
+        <% if current_user.present? %>
+          <% if @user.id == current_user.id %>
+            <p>投稿してみましょう！➡︎ <%= link_to "投稿はこちらから", new_post_path, class: "standard-button" %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%#<%= render partial: "posts/article", locals: {posts: @posts}  %>
+      <div class="not-under">
+
+        <%= render partial: "posts/article", locals: {posts: @posts}  %>
+
+      </div>
+
+      <%#<% if current_user.present? %>
+        <%#<% if @user.id == current_user.id && @posts.present? %>
+          <%#<p>投稿ありがとうございます！これまでに経験された他のキャリアについても投稿してみませんか？➡︎ <%= link_to "投稿はこちらから", new_post_path, class: "standard-button" %></p>
+        <%#<% end %>
+      <%#<% end %>
+    </div>
+    <br>
+
+    <!-- 本人がいいね！を押した投稿一覧 -->
+  <div>
+    <h5><%= @user.nickname %>さんが<span class="fa fa-heart like-btn"></span>いいね！をした投稿一覧</h5>
+    <% unless @likes.present? %>
+      <p><%= @user.nickname %>さんが<span class="fa fa-heart like-btn"></span>いいね！をした投稿はまだありません。</p>
+    <% end %>
+
+    <%#<%= render partial: "posts/article", locals: {posts: @want_posts}  %>
+    <div class="not-under">
+      <div class="col-sm-12 col-md-8">
+      <table class="table-responsive table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th width="10%">Title</th>
+            <th width="5%">いいね</th>
+            <th width="20%">Summary</th>
+            <th width="20%">Content</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @likes.each do |like| %>
+           <% post = Post.find_by(id: like.post_id) %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><span class="fa fa-heart like-btn"><%= post.likes.count %></span>件</td>
+              <td><%= post.summary %></td>
+              <td><%= post.content %><%= link_to 'もっと見る', post %></td>
+              <td><%#= like_post.content %><%#= link_to 'もっと見る', "@posts/#{post.id}", controllers: "@posts", action: "show" %></td>
+            </tr>
+           <% end %>
+        </tbody>
+      </table>
+    </div>
+   </div>
+  </div>
+
+  <%= link_to '投稿一覧へ', posts_path %>
+
+</div>

@@ -1,0 +1,46 @@
+
+  <br>
+  <h2>いいね！ランキング</h2>
+  <div class="container">
+  <%#= render partial: "article", locals: {posts: @posts}  %>
+
+<!--
+  <div class="row">
+     <div id="ranking" class="col-md-11 width="500px"">
+-->
+
+  <div class="not-under">
+  <% @posts.each do |post| %>
+    <%= link_to post do %>
+      <div class ="card switch">
+        <div class ="card-body post-index-body">
+          <table class="table table-responsive table-sm post-index">
+            <tbody>
+                <tr>
+                  <td class="border-top-0"> 「<%= post.title %>」</td>
+                </tr>
+                <tr>
+                  <td class="border-top-0"> -<%= post.genre.try(:name) %>-   <span class="fa fa-heart like-btn"><%= post.likes.count %></span>件</td>
+                </tr>
+                <tr>
+                  <td class="border-top-0"> (要約：<%= post.summary %>) </td>
+                </tr>
+                <tr>
+                  <td class="border-top-0"> (内容：<%= post.content %>　<%= link_to 'もっと見る', post %>)- </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+  <div>
+    <%#= link_to '投稿一覧へ', posts_path %>
+      <%#<i class="fa fa-arrow-circle-left fa-fw"></i> 投稿一覧へ%>
+  </div>
+
+    </div>
+  </div>
+</div>

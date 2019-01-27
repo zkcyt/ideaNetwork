@@ -1,0 +1,18 @@
+<!-- ジャンル別投稿一覧-->
+<h1>「<%= @genre.name %>」の投稿</h1>
+
+
+
+<%# unless @posts.present? %>
+  <p><%= @genre.name %>の投稿はまだありません。</p>
+<%# end %>
+
+<%# if @posts.present? %>
+<%# unless @post.genre_id = @genre.id %>
+   <p><%#= @genre.name %>の投稿はまだありません。</p>
+<%# end %>
+    <% @posts.each do |post| %>
+       <%= post.title %>
+       <%= post.summary %>
+    <% end %>
+<%# end %>

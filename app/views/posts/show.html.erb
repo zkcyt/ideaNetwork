@@ -15,15 +15,29 @@
   <%= @post.content %>
 </p>
 
+<!-- いいね追加・削除 -->
+      <div id="like_area">
+        <%= render partial: 'likes/index' %>
+      </div>
+
+<p>
+  <strong>Genre:</strong>
+  <%#= @post.genre_id %>
+  <%= @post.genre.try(:name) %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%#= link_to @post.user.nickname, controller::users, action::show %>
+  <%#= link_to @post.user.nickname, user_path(current_user.id) %>
+  <%= link_to @post.user.nickname, user_path(@user.id) %>
+</p>
+
 <p>
   <strong>User:</strong>
   <%= @post.user_id %>
 </p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @post.genre_id %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Edit', edit_post_path(@post) %>
+<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', posts_path %>
